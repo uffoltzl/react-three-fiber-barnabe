@@ -11,6 +11,7 @@ npm-debug.*
 web-build/
 .cache/
 yarn-error.log
+assets/WhaleShark/
 
 # macOS
 .DS_Store
