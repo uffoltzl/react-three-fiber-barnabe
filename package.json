@@ -9,6 +9,7 @@
     "test:types": "tsc"
   },
   "dependencies": {
+    "@react-three/drei": "^9.57.3",
     "@react-three/fiber": "^8.11.2",
     "expo": "~47.0.12",
     "expo-file-system": "~15.1.1",
