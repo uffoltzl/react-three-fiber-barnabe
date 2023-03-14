@@ -15,7 +15,13 @@
     "react-native": "0.71.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@types/jest": "^29.4.1",
+    "@types/react": "^18.0.28",
+    "@types/react-native": "^0.71.3",
+    "@types/react-test-renderer": "^18.0.0",
+    "ts-migrate": "^0.1.35",
+    "typescript": "^4.9.5"
   },
   "private": true
 }
