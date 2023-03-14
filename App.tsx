@@ -1,22 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Canvas } from "@react-three/fiber/native";
+import { Suspense } from "react";
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Canvas>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+
+      <Suspense fallback={null}>
+        <mesh>
+          <sphereGeometry />
+          <meshStandardMaterial color="orange" />
+        </mesh>
+      </Suspense>
+    </Canvas>
   );
 };
 
 export { App };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
