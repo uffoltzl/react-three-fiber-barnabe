@@ -1,9 +1,19 @@
 import { Canvas, useLoader } from "@react-three/fiber/native";
+import { Environment } from "@react-three/drei/native";
 import { Suspense, useLayoutEffect } from "react";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { TextureLoader } from "expo-three";
 import * as THREE from "three";
+
+const Background = () => {
+  return (
+    <mesh scale={100}>
+      <sphereGeometry />
+      <meshBasicMaterial color="#2645e0" side={THREE.BackSide} />
+    </mesh>
+  );
+};
 
 const Barnabe = () => {
   const [base, normal, rough] = useLoader(TextureLoader, [
@@ -36,7 +46,7 @@ const Barnabe = () => {
   }, [obj]);
 
   return (
-    <mesh>
+    <mesh castShadow>
       <primitive object={obj} scale={0.5} />
     </mesh>
   );
@@ -44,11 +54,14 @@ const Barnabe = () => {
 
 const App = () => {
   return (
-    <Canvas>
-      <pointLight position={[10, 10, 10]} />
+    <Canvas shadows>
+      <fog attach="fog" args={["#4479e1", 0, 200]} />
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[0, 1, 0]} intensity={0.7} />
       <Suspense fallback={null}>
         <Barnabe />
       </Suspense>
+      <Background />
     </Canvas>
   );
 };
