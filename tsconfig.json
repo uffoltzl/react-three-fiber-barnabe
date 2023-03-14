@@ -6,7 +6,9 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react-native",
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
@@ -27,5 +29,9 @@
     "noUnusedParameters": true,
     "useUnknownInCatchVariables": true
   },
-  "exclude": ["node_modules", "babel.config.ts", "metro.config.ts"]
+  "exclude": [
+    "node_modules",
+    "babel.config.ts",
+    "metro.config.ts"
+  ]
 }
