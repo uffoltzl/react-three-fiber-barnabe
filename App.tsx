@@ -1,10 +1,10 @@
-import { Canvas, useLoader } from "@react-three/fiber/native";
-import { Environment } from "@react-three/drei/native";
-import { Suspense, useLayoutEffect } from "react";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber/native";
+import { MutableRefObject, Suspense, useLayoutEffect, useRef } from "react";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { TextureLoader } from "expo-three";
 import * as THREE from "three";
+import { BufferGeometry, Material, Mesh } from "three";
 
 const Background = () => {
   return (
@@ -45,8 +45,19 @@ const Barnabe = () => {
     });
   }, [obj]);
 
+  const mesh: MutableRefObject<Mesh<
+    BufferGeometry,
+    Material | Material[]
+  > | null> = useRef(null);
+
+  useFrame((state, delta) => {
+    if (mesh && mesh.current) {
+      mesh.current.rotation.y += delta;
+    }
+  });
+
   return (
-    <mesh castShadow>
+    <mesh ref={mesh} castShadow>
       <primitive object={obj} scale={0.5} />
     </mesh>
   );
