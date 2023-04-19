@@ -55,7 +55,7 @@ const Barnabe = () => {
   });
 
   return (
-    <mesh ref={mesh} castShadow>
+    <mesh ref={mesh} castShadow rotation={[0.6, 0, 0]}>
       <primitive object={obj} scale={0.5} />
     </mesh>
   );
