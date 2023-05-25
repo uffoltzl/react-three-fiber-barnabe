@@ -9,13 +9,14 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@react-three/drei": "^9.57.3",
+    "@react-three/drei": "^9.68.3",
     "@react-three/fiber": "^8.11.2",
     "expo": "~47.0.12",
     "expo-file-system": "~15.1.1",
     "expo-gl": "~12.0.1",
     "expo-status-bar": "~1.4.2",
     "expo-three": "^7.0.0",
+    "expo-three-orbitcontrols": "https://github.com/foufrix/expo-three-orbit-controls",
     "react": "18.1.0",
     "react-native": "0.70.5",
     "three": "^0.149.0"
