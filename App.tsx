@@ -3,6 +3,7 @@ import {
   MutableRefObject,
   Suspense,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -13,6 +14,8 @@ import * as THREE from "three";
 import { BufferGeometry, Material, Mesh } from "three";
 import { Background } from "./components/Background";
 import OrbitControlsView from "expo-three-orbitcontrols";
+import backgroundVertexShader from "./shaders/backgroundVertexShader";
+import backgroundFragmentShader from "./shaders/backgroundFragmentShader";
 import { View } from "react-native";
 
 const Barnabe = () => {
@@ -56,9 +59,35 @@ const Barnabe = () => {
   //   }
   // });
 
+  const uniforms = useMemo(
+    () => ({
+      u_intensity: {
+        value: 0.3,
+      },
+      u_time: {
+        value: 0.0,
+      },
+    }),
+    []
+  );
+
+  useFrame((state) => {
+    const { clock } = state;
+    if (mesh && mesh.current && mesh.current.material) {
+      // @ts-ignore
+      mesh.current.material.uniforms.u_time.value =
+        0.4 * clock.getElapsedTime();
+    }
+  });
+
   return (
     <mesh ref={mesh} castShadow rotation={[0.6, 0, 0]}>
       <primitive object={obj} scale={0.5} />
+      <shaderMaterial
+        fragmentShader={backgroundFragmentShader}
+        vertexShader={backgroundVertexShader}
+        uniforms={uniforms}
+      />
     </mesh>
   );
 };
